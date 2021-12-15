@@ -1,0 +1,9 @@
+{
+  "name": "craftscan-worker",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "portscanner": "^2.2.0"
+  }
+}

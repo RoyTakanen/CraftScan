@@ -1,7 +1,13 @@
 {
-    "name": "craftscan-worker",
-    "version": "1.0.0",
-    "main": "app.js",
-    "license": "SEE LICENSE IN LICENSE"
+  "name": "craftscan-worker",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "geoip-lite": "^1.4.2",
+    "mcpinger": "^0.1.8",
+    "netmask": "^2.0.2",
+    "portscanner": "^2.2.0"
   }
-  
+}

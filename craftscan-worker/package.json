@@ -4,6 +4,8 @@
   "main": "app.js",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "colors": "^1.4.0",
+    "netmask": "^2.0.2",
     "portscanner": "^2.2.0"
   }
 }

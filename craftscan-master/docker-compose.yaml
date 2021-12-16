@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=craftscan
+      - MONGO_INITDB_ROOT_PASSWORD=craftscan
+    ports:
+      - 27017:27017
+
+  populator:
+    build: populator
+    environment:
+      - MONGO_URI=mongodb://craftscan:craftscan@mongo:27017/craftscan
+    volumes:
+      - ./populator/data:/data:ro
+    depends_on:
+      - mongo

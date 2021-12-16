@@ -34,3 +34,7 @@ Hosts the API and listens for worker ip requests and submissions.
 ## Worker
 
 Gets list of IP addresses from the master and test port 25565 on them. If it is open the ip will be submitted to the master. The program runs in a docker container which makes it easy to deploy it almost anywhere. 
+
+---
+
+This site or product includes IP2Location LITE data available from [https://lite.ip2location.com](https://lite.ip2location.com).

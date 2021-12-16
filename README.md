@@ -2,6 +2,8 @@
 
 Minecraft server lists which tests every 25565 port on the internet. It is also possible for you (yes **you**) to run your own instance and help the site. 
 
+Coming to some free .ga-domain in the near future!
+
 ## Master
 
 Hosts the API and listens for worker ip requests and submissions. 

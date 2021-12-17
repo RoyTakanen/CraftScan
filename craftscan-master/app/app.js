@@ -4,6 +4,8 @@ const colors = require('colors/safe')
 // const { format, toHTML } = require('minecraft-motd-util');
 const express = require('express')
 const { MongoClient } = require('mongodb');
+const ipInt = require('ip-to-int');
+const IpSubnetCalculator = require('ip-subnet-calculator')
 
 const client = new MongoClient(process.env.MONGO_URL);
 const app = express()
@@ -30,10 +32,17 @@ const main = async () => {
 
     app.get('/worker/subnet', async (req, res) => {
         const workerIp = req.ip
-        const subnet = await ip2locationCol.findOne({ country_code: "FI" })
+        const ipArea = await ip2locationCol.findOne({ country_code: "FI" })
+        const subnetStart = ipInt(ipArea.ip_from).toIP()
+        const subnetEnd = ipInt(ipArea.ip_to).toIP()
+        console.log(subnetStart, subnetEnd)
+        const calculation = IpSubnetCalculator.calculate(ipArea.ip_from, ipArea.ip_to)
+
+        const block = new Netmask(calculation[0].ipLowStr, calculation[0].prefixMaskStr);
+
         res.json({
             workerIp,
-            subnet
+            subnet: block.toString()
         })
     })
 

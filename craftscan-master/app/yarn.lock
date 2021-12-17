@@ -335,6 +335,16 @@ ip-address@^5.8.9:
     lodash "^4.17.15"
     sprintf-js "1.1.2"
 
+ip-subnet-calculator@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/ip-subnet-calculator/-/ip-subnet-calculator-1.1.8.tgz#9bc02e233d5a43efae7adeb45f6a694b82b970fd"
+  integrity sha1-m8AuIz1aQ++uet60X2ppS4K5cP0=
+
+ip-to-int@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ip-to-int/-/ip-to-int-0.3.1.tgz#4eb315c2d0e604010047515db499e38b1fb3ef40"
+  integrity sha1-TrMVwtDmBAEAR1FdtJnjix+z70A=
+
 ipaddr.js@1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"

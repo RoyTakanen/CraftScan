@@ -8,6 +8,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "geoip-lite": "^1.4.2",
+    "ip-subnet-calculator": "^1.1.8",
+    "ip-to-int": "^0.3.1",
     "mcpinger": "^0.1.8",
     "mongodb": "^4.2.2",
     "netmask": "^2.0.2",

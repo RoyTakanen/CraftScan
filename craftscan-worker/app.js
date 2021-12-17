@@ -1,9 +1,7 @@
-const portscanner = require('portscanner')
-const Netmask = require('netmask').Netmask
-const colors = require('colors/safe')
-
-const block = new Netmask('109.204.224.0/24');
-console.log(colors.yellow(`Received ${block.size} ips to scan.`))
+import portscanner from 'portscanner';
+import { Netmask } from 'netmask';
+import chalk from 'chalk';
+import fetch from 'node-fetch';
 
 const scan = (ip, long, index) => {
     portscanner.checkPortStatus(25565, ip, (error, status) => {
@@ -13,6 +11,19 @@ const scan = (ip, long, index) => {
     })
 }
 
-block.forEach((ip, long, index) => {
-    scan(ip, long, index)
-});
+while (true) {
+    const response = await fetch('http://localhost:3000/worker/subnet');
+    const data = await response.json();
+    
+    if (data.banned) {
+        console.log(chalk.red(chalk.bold('Banned for submitting too many false positives!')))
+        break
+    }
+
+    const block = new Netmask(data.subnet);
+    console.log(chalk.yellow(`Received ${block.size} ips to scan. (${data.subnet})`))
+
+    block.forEach((ip, long, index) => {
+        scan(ip, long, index)
+    });
+}

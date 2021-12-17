@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  mongo:
+  mongodb:
     image: mongo
     restart: always
     environment:
@@ -11,10 +11,10 @@ services:
       - 27017:27017
 
   populator:
-    build: populator
-    environment:
-      - MONGO_URI=mongodb://craftscan:craftscan@mongo:27017/craftscan
+    image: mongo
+    restart: on-failure
     volumes:
-      - ./populator/data:/data:ro
-    depends_on:
-      - mongo
+      - ./populator/data:/data
+    links:
+      - mongodb
+    command: mongoimport --host mongodb --authenticationDatabase admin --username craftscan --password craftscan --drop --collection ip2location --type csv --file "/data/IP2LOCATION-LITE-DB1.CSV" --fields ip_from,ip_to,country_code,country_name

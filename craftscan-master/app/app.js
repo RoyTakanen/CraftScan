@@ -42,6 +42,7 @@ const main = async () => {
 
         res.json({
             workerIp,
+            banned: false, // fetch from Redis
             subnet: block.toString()
         })
     })

@@ -12,7 +12,7 @@ const main = async () => {
     await client.connect()
 
     const db = client.db('craftscan')
-    const collection = db.collection('documents')
+    const ip2locationCol = db.collection('ip2location')
 
     app.get('/', (req, res) => {
         res.json({
@@ -26,14 +26,18 @@ const main = async () => {
         })
     })
 
-    app.get('/worker/subnet', (req, res) => {
+    // Search which country IP belongs to: { ip_from: { $lte: 1425591560 }, ip_to: { $gte: 1425591560 } }
+
+    app.get('/worker/subnet', async (req, res) => {
         const workerIp = req.ip
+        const subnet = await ip2locationCol.findOne({ country_code: "FI" })
         res.json({
-            workerIp
+            workerIp,
+            subnet
         })
     })
 
-    app.listen(3000, '0.0.0.0')
+    app.listen(process.env.PORT, '0.0.0.0')
 }
 
 main()

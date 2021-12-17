@@ -17,4 +17,4 @@ services:
       - ./populator/data:/data
     links:
       - mongodb
-    command: mongoimport --host mongodb --authenticationDatabase admin --username craftscan --password craftscan --drop --collection ip2location --type csv --file "/data/IP2LOCATION-LITE-DB1.CSV" --fields ip_from,ip_to,country_code,country_name
+    command: mongoimport --host mongodb --authenticationDatabase admin --username craftscan --password craftscan --drop --db craftscan --collection ip2location --type csv --file "/data/IP2LOCATION-LITE-DB1.CSV" --fields ip_from,ip_to,country_code,country_name

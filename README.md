@@ -20,6 +20,13 @@ Hosts the API and listens for worker ip requests and submissions.
 2. Worker checks if ports are open and sends a list of open ip's to master (consider sending after every one of them have been scanned => keep timestamp in case the scan takes long and one of the ip's goes down => no ban). The master checks if port is open and scans the Minecraft server motd from it. In case the port is closed the server adds a failure to for the ip to Redis. If there are 5 failures in one hour the ip will be marked as a spam and blocked for a month. If the port is not assigned for the worker, master will refuse to process it (someone runs a worker that only scans his own server => prohibits data polarization). Assignments are released after 30 minutes (worker has half an hour to process given list).
 3. Repeat
 
+### Saving results and giving commands
+
+The MongoDB has a database named craftscan which contains these collections:
+
+1. ip2location (ip, country) (used mainly for getting ip address ranges for scanning)
+2. motd (motd, timestamp, workerIp) (used to store found motd's allows historical motd's also)
+3. statistics (workerIp, workerCountry, workerSubmissions, firstSeen, lastSeen) (used for displaying nice statistics about workers)
 
 ### API
 

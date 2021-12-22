@@ -18,3 +18,14 @@ services:
     links:
       - mongodb
     command: mongoimport --host mongodb --authenticationDatabase admin --username craftscan --password craftscan --drop --db craftscan --collection ip2location --type csv --file "/data/IP2LOCATION-LITE-DB1.CSV" --fields ip_from,ip_to,country_code,country_name
+
+  redis:
+    image: "redis:alpine"
+
+    command: redis-server --requirepass craftscan
+
+    ports:
+     - "6379:6379"
+
+    environment:
+     - REDIS_REPLICATION_MODE=master
